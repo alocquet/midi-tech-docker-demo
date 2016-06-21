@@ -13,5 +13,7 @@ Vagrant.configure(2) do |config|
 
       # install node & npm
       sudo apt-get install -y docker.io
+      # Add vagrant user to docker group
+      usermod -a -G docker vagrant
     SHELL
 end
