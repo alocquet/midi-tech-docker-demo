@@ -13,7 +13,9 @@ ENV PROFILE dev
 # Déploiement du jar et de l'entry point
 ADD ./target/services*.jar /opt/services.jar
 ADD entrypoint.sh /entrypoint.sh
+ADD wait-for-it.sh /wait-for-it.sh
 RUN chmod +x /entrypoint.sh
+RUN chmod +x /wait-for-it.sh
 
 # Volume des logs. Pour l'exemple...
 VOLUME ["/var/log/services"]
