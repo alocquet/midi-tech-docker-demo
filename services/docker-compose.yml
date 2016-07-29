@@ -4,7 +4,7 @@ services:
     build:
       context: .
       args:
-        http_proxy: //http://webdefence.global.blackspider.com:80
+        http_proxy: http://proxy:80
     image: alocquet/midi-tech-first:1.0
     depends_on:
     - database
