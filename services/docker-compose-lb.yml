@@ -4,7 +4,7 @@ services:
     build:
       context: .
       args:
-        http_proxy: http://proxy:80
+        http_proxy: http://webdefence.global.blackspider.com:80
     image: alocquet/midi-tech-first:1.0
     depends_on:
     - database
@@ -14,18 +14,18 @@ services:
     environment:
       PROFILE: prod
     command: node0
-    ports:
-    - 8080
     volumes:
     - logvolume01:/var/log/services
     labels:
       - "traefik.backend=services"
-      - "traefik.frontend.rule=Host:services.docker.localhost"
+      - "traefik.frontend.rule=Host:services.docker"
   database:
     image: postgres:9.5.3
     environment:
       POSTGRES_USER: miditech
       POSTGRES_PASSWORD: miditech
+    labels:
+      - "traefik.enable=false"
   traefik:
     image: traefik
     command: --web --docker --docker.domain=docker.localhost --logLevel=DEBUG

@@ -1,7 +1,10 @@
 Vagrant.configure(2) do |config|
   config.vm.box = "ubuntu/wily64"
   config.vm.synced_folder ".", "/home/vagrant/project"
-  config.vm.network "private_network", ip: "192.168.100.100"
+  config.vm.network "private_network", type: "dhcp"
+
+  config.vm.define "node1"
+  config.vm.define "node2"
 
   config.vm.provider :virtualbox do |vb|
     vb.customize ["setextradata", :id, "VBoxInternal2/SharedFoldersEnableSymlinksCreate/.", "1"]
